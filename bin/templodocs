@@ -6,9 +6,10 @@ require __DIR__ . '/../vendor/autoload.php';
 use Ziumper\Templodocs\TempoReporter;
 use Ziumper\Templodocs\WordFileGenerator;
 
-$csv = 'templates/data.csv';
-$template = 'templates/template.docx';
-$reportFile = 'report';
+// Grab CLI arguments
+$csv = $argv[1] ?? 'templates/data.csv';           // Default if not passed
+$template = $argv[2] ?? 'templates/template.docx'; // Default if not passed
+$reportFile = $argv[3] ?? 'report';                // Default if not passed
 
 $tempoReader = new TempoReporter($csv);
 $generator = new WordFileGenerator($template,$reportFile,$tempoReader->getContent());

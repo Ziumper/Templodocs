@@ -1,6 +1,6 @@
 # Templodocs
 
-A sacred tool for documentation templates. So far you can use it to:
+A sacred tool for documents templates. So far you can use it to:
 * generate word document from tempo csv files
 
 ## Usage
