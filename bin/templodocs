@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Ziumper\Templodocs\TempoReporter;
+use Ziumper\Templodocs\WordFileGenerator;
+
+$csv = 'templates/data.csv';
+$template = 'templates/template.docx';
+$reportFile = 'report';
+
+$tempoReader = new TempoReporter($csv);
+$generator = new WordFileGenerator($template,$reportFile,$tempoReader->getContent());
+$generator->generate();
+
