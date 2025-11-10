@@ -9,10 +9,12 @@ Generate a Word document from a template. To generate the word document run foll
 command.
 
 ```bash
-bin/templodocs path/to/data.csv path/to/template.docx output_filename
+bin/templodocs ./templates/data.csv ./templates/template.docx new_report.docx
 ```
 
 ## TODO 
 * Add tempo reports api usage 
 * Add `phpcs` and `phpstan`
 * Add php unit tests 
+* Add translation api
+```
