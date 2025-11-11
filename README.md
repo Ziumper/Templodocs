@@ -18,8 +18,19 @@ bin/templodocs ./templates/data.csv ./templates/template.docx new_report.docx
 * Add php unit tests 
 * Add translation api
 
-## Unit Testing
+## Commands
 
 ```bash
-vendor/bin/phpunit -c phpunit.xml.dist --display-deprecations --display-phpunit-deprecations    
+# Unit Testing
+vendor/bin/phpunit -c phpunit.xml.dist --display-deprecations --display-phpunit-deprecations
+
+# PhpCsFixer
+vendor /bin/php-cs-fixer fix --verbose src/ 
+vendor /bin/php-cs-fixer fix --verbose tests/
+    
+# PhpStan
+vendor/bin/phpstan analyze src/ tests/
+  
+# PhpCS
+vendor/bin/phpcs src/ tests/   
 ```
