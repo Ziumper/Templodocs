@@ -6,6 +6,13 @@
     "autoload": {
         "psr-4": {
             "Ziumper\\Templodocs\\": "src/"
+        },
+        "exclude-from-classmap": ["tests"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ziumper\\Templodocs\\Tests\\Unit\\": "tests/unit",
+            "Ziumper\\Templodocs\\Tests\\Integration\\": "tests/integration"
         }
     },
     "bin": [

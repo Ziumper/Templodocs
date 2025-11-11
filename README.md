@@ -17,4 +17,9 @@ bin/templodocs ./templates/data.csv ./templates/template.docx new_report.docx
 * Add `phpcs` and `phpstan` [x]
 * Add php unit tests 
 * Add translation api
+
+## Unit Testing
+
+```bash
+vendor/bin/phpunit -c phpunit.xml.dist --display-deprecations --display-phpunit-deprecations    
 ```

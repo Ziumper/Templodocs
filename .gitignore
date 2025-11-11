@@ -11,6 +11,8 @@ composer.phar
 .idea
 /nbproject/
 .php-cs-fixer.cache
+.phpunit.cache/
+.phpunit.result.cache
 
 #
 *.docx
