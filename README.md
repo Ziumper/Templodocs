@@ -14,7 +14,7 @@ bin/templodocs ./templates/data.csv ./templates/template.docx new_report.docx
 
 ## TODO 
 * Add tempo reports api usage 
-* Add `phpcs` and `phpstan`
+* Add `phpcs` and `phpstan` [x]
 * Add php unit tests 
 * Add translation api
 ```
