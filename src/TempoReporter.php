@@ -6,19 +6,21 @@ use League\Csv\Reader;
 use League\Csv\Statement;
 
 /**
- * 
+ *
  * Takes csv report from tempo file and generates
  * grouped up by issue and worklog
- * 
+ *
  * #TODO use api https://apidocs.tempo.io/ instead csv data
- * 
+ *
  * @author ziumper
  */
-class TempoReporter {
-    
-    public function __construct(private string $path) {}
-    
-    public function getContent(): array 
+class TempoReporter
+{
+    public function __construct(private string $path)
+    {
+    }
+
+    public function getContent(): array
     {
         $csvPath = $this->path;
         $csv = Reader::createFromPath($csvPath, 'r');
@@ -55,11 +57,11 @@ class TempoReporter {
         foreach ($tasks as $key => $task) {
             $content .= $key . PHP_EOL;
             foreach ($task['descriptions'] as $object) {
-                $content .= "- " .$object . PHP_EOL;
+                $content .= "- " . $object . PHP_EOL;
             }
         }
-        
-        
+
+
         return [
             'content' => $content,
             'total' => $total
