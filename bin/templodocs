@@ -11,7 +11,9 @@ $csv = $argv[1] ?? 'templates/data.csv';           // Default if not passed
 $template = $argv[2] ?? 'templates/template.docx'; // Default if not passed
 $reportFile = $argv[3] ?? 'report';                // Default if not passed
 
-$tempoReader = new TempoReporter($csv);
-$generator = new WordFileGenerator($template,$reportFile,$tempoReader->getContent());
-$generator->generate();
+throw new Exception("Work in Progress!");
+
+//$tempoReader = new TempoReporter($csv);
+//$generator = new WordFileGenerator($template,$reportFile,$tempoReader->getContent());
+//$generator->generate();
 

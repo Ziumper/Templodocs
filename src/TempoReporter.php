@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Ziumper\Templodocs;
 
 use League\Csv\Reader;
@@ -16,15 +18,9 @@ use League\Csv\Statement;
  */
 class TempoReporter
 {
-    public function __construct(private string $path)
+    public function getContent(Reader $reader): array
     {
-    }
-
-    public function getContent(): array
-    {
-        $csvPath = $this->path;
-        $csv = Reader::createFromPath($csvPath, 'r');
-        $csv->setHeaderOffset(0);
+        $csv = $reader;
         $records = (new Statement())->process($csv);
         $tasks = [];
         $content = '';
@@ -60,7 +56,6 @@ class TempoReporter
                 $content .= "- " . $object . PHP_EOL;
             }
         }
-
 
         return [
             'content' => $content,
