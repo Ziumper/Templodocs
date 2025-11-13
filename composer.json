@@ -5,7 +5,8 @@
     "version": "1.0.0",
     "autoload": {
         "psr-4": {
-            "Ziumper\\Templodocs\\": "src/"
+            "Ziumper\\Templodocs\\": "src/",
+            "Ziumper\\Templodocs\\Tests\\Utils\\": "tests/utils"
         },
         "exclude-from-classmap": ["tests"]
     },

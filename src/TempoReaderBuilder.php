@@ -23,13 +23,13 @@ class TempoReaderBuilder
         return $this;
     }
 
-    public function build(): Reader
+    public function build(): ?Reader
     {
-        $reader = Reader::fromString($this->string);
-        if ($this->path) {
-            $reader = Reader::from($this->path, "r");
+        if (empty($this->path) && empty($this->string)) {
+            return null;
         }
-
+        
+        $reader = ($this->path != null ? Reader::from($this->path, "r") : Reader::fromString($this->string));
         $reader->setHeaderOffset(0);
         return $reader;
     }

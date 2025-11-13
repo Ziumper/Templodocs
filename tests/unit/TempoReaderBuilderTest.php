@@ -12,9 +12,7 @@ use Ziumper\Templodocs\TempoReaderBuilder;
 #[CoversClass(TempoReaderBuilder::class)]
 class TempoReaderBuilderTest extends TestCase
 {
-    //Tempo apply different type of format and it depends on configuration,
-    //so I build it with simplest type of example
-    public function testReader(): void
+    public function testReaderWithString(): void
     {
         $reader = (new TempoReaderBuilder())
                 ->withString(",Issue,Worklog,Key,Logged,01/Oct/92\n" .
@@ -23,5 +21,14 @@ class TempoReaderBuilderTest extends TestCase
 
         $records = (new Statement())->process($reader);
         static::assertEquals(1, $records->count());
+    }
+    
+    public function testReaderWithEmptyFilePath(): void 
+    {
+        $reader = (new TempoReaderBuilder())
+                ->withPath("")
+                ->build();
+        
+        static::assertNull($reader);
     }
 }
