@@ -1,19 +1,21 @@
 #!/usr/bin/env php
 <?php
 
+use Ziumper\Templodocs\Core\CsvReaderBuilder;
+use Ziumper\Templodocs\Tempo\TempoReporter;
+use Ziumper\Templodocs\WordFileGenerator;
+
 require __DIR__ . '/../vendor/autoload.php';
 
-use Ziumper\Templodocs\TempoReporter;
-use Ziumper\Templodocs\WordFileGenerator;
 
 // Grab CLI arguments
 $csv = $argv[1] ?? 'templates/data.csv';           // Default if not passed
 $template = $argv[2] ?? 'templates/template.docx'; // Default if not passed
 $reportFile = $argv[3] ?? 'report';                // Default if not passed
 
-throw new Exception("Work in Progress!");
 
-//$tempoReader = new TempoReporter($csv);
-//$generator = new WordFileGenerator($template,$reportFile,$tempoReader->getContent());
-//$generator->generate();
+$tempoReader = new TempoReporter();
+$reader = (new CsvReaderBuilder())->withPath($csv)->build();
+$generator = new WordFileGenerator($template,$reportFile, $tempoReader->getContent($reader));
+$generator->generate();
 

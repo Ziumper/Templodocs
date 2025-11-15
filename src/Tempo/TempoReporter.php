@@ -23,23 +23,22 @@ class TempoReporter
         $csv = $reader;
         $records = (new Statement())->process($csv);
         $tasks = [];
+        $total = 0;
         $content = '';
         # read the CSV file and process each row
         foreach ($records as $row) {
-            if (!empty($row['']) and isset($row['Logged'])) {
+            if ($row[''] === 'Total' and isset($row['Logged'])) {
                 $total = $row['Logged'];
                 continue;
             }
 
             $key = $row['Key'] ?? '';
             $desc = $row['Worklog'] ?? '';
-            if (empty($desc)) {
-                continue;
-            }
 
             if (empty($tasks[$key]['descriptions'])) {
                 $tasks[$key]['descriptions'] = [];
             }
+
             foreach ($tasks[$key]['descriptions'] as $description) {
                 if ($description === $desc) {
                     continue 2; // skip if the description already exists

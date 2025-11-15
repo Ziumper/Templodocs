@@ -20,9 +20,9 @@
         "bin/templodocs"
     ],
     "scripts": {
-        "phpunit": "vendor/bin/phpunit -c phpunit.xml.dist --display-deprecations --display-phpunit-deprecations",
+        "phpunit": "vendor/bin/phpunit -c phpunit.xml.dist --display-warnings --display-deprecations --display-phpunit-deprecations",
         "phpstan": "vendor/bin/phpstan analyze src/ tests/",
-        "phpcs": "vendor/bin/phpcs src tests",
+        "phpcs": "vendor/bin/phpcs src tests",  
         "phpcbf": "vendor/bin/phpcbf src tests"
     },
     "require": {
