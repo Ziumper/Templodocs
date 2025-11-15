@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ziumper\Templodocs;
+namespace Ziumper\Templodocs\Core;
 
 use League\Csv\Reader;
+use RuntimeException;
 
-class TempoReaderBuilder
+class CsvReaderBuilder
 {
     private ?string $path = null;
     private ?string $string = null;
@@ -26,9 +27,9 @@ class TempoReaderBuilder
     public function build(): ?Reader
     {
         if (empty($this->path) && empty($this->string)) {
-            return null;
+            throw new RuntimeException("No path nor string provided for resource!");
         }
-        
+
         $reader = ($this->path != null ? Reader::from($this->path, "r") : Reader::fromString($this->string));
         $reader->setHeaderOffset(0);
         return $reader;

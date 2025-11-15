@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Ziumper\Templodocs\Tests\Unit;
+namespace Ziumper\Templodocs\Tests\Unit\Core;
 
 use League\Csv\Statement;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use Ziumper\Templodocs\TempoReaderBuilder;
+use Ziumper\Templodocs\Core\CsvReaderBuilder;
 
-#[CoversClass(TempoReaderBuilder::class)]
-class TempoReaderBuilderTest extends TestCase
+#[CoversClass(CsvReaderBuilder::class)]
+class CsvReaderBuilderTest extends TestCase
 {
     public function testReaderWithString(): void
     {
-        $reader = (new TempoReaderBuilder())
+        $reader = (new CsvReaderBuilder())
                 ->withString(",Issue,Worklog,Key,Logged,01/Oct/92\n" .
                         ",Test job,,KEYLOG-999,2")
                 ->build();
@@ -22,13 +22,11 @@ class TempoReaderBuilderTest extends TestCase
         $records = (new Statement())->process($reader);
         static::assertEquals(1, $records->count());
     }
-    
-    public function testReaderWithEmptyFilePath(): void 
+
+    public function testReaderWithEmptyFilePath(): void
     {
-        $reader = (new TempoReaderBuilder())
-                ->withPath("")
-                ->build();
-        
-        static::assertNull($reader);
+        $this->expectException(\RuntimeException::class);
+        $builder = new CsvReaderBuilder();
+        $builder->build();
     }
 }

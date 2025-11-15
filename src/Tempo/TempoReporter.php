@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ziumper\Templodocs;
+namespace Ziumper\Templodocs\Tempo;
 
 use League\Csv\Reader;
 use League\Csv\Statement;

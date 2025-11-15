@@ -15,22 +15,5 @@ bin/templodocs ./templates/data.csv ./templates/template.docx new_report.docx
 ## TODO 
 * Add tempo reports api usage 
 * Add `phpcs` and `phpstan` [x]
-* Add php unit tests 
+* Add php unit tests [x]
 * Add translation api
-
-## Commands
-
-```bash
-# Unit Testing
-vendor/bin/phpunit -c phpunit.xml.dist --display-deprecations --display-phpunit-deprecations
-
-# PhpCsFixer
-vendor /bin/php-cs-fixer fix --verbose src/ 
-vendor /bin/php-cs-fixer fix --verbose tests/
-    
-# PhpStan
-vendor/bin/phpstan analyze src/ tests/
-  
-# PhpCS
-vendor/bin/phpcs src/ tests/   
-```

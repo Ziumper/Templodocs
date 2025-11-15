@@ -19,6 +19,12 @@
     "bin": [
         "bin/templodocs"
     ],
+    "scripts": {
+        "phpunit": "vendor/bin/phpunit -c phpunit.xml.dist --display-deprecations --display-phpunit-deprecations",
+        "phpstan": "vendor/bin/phpstan analyze src/ tests/",
+        "phpcs": "vendor/bin/phpcs src tests",
+        "phpcbf": "vendor/bin/phpcbf src tests"
+    },
     "require": {
 	"php": ">=8.3",
         "phpoffice/phpword": "^1.3",
@@ -31,7 +37,6 @@
         "ext-filter": "*"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.89",
         "squizlabs/php_codesniffer": "^4.0",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^12.4"
