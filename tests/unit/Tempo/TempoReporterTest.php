@@ -15,12 +15,12 @@ use Ziumper\Templodocs\Tests\Utils\TempoDataProvider;
 final class TempoReporterTest extends TestCase
 {
     #[DataProviderExternal(TempoDataProvider::class, 'reportDataProvider')]
-    public function testGetContent(string $csvContnet, array $expected)
+    public function testGetReport(string $csvContnet, string $expected)
     {
         $reader = (new CsvReaderBuilder())->withString($csvContnet)->build();
-        $reporter = new TempoReporter();
+        $reporter = new TempoReporter($reader);
 
-        $content = $reporter->getContent($reader)["content"];
-        static::assertEquals($expected["content"], $content);
+        $content = $reporter->getReport();
+        static::assertEquals($expected, $content);
     }
 }

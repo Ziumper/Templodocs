@@ -18,47 +18,27 @@ use League\Csv\Statement;
  */
 class TempoReporter
 {
-    public function getContent(Reader $reader): array
+    public function __construct(private Reader $reader)
     {
-        $csv = $reader;
+    }
+
+    public function getReport(): string
+    {
+        $csv = $this->reader;
         $records = (new Statement())->process($csv);
-        $tasks = [];
-        $total = 0;
-        $content = '';
+        $report = new TempoReportStruct();
+
         # read the CSV file and process each row
         foreach ($records as $row) {
-            if ($row[''] === 'Total' and isset($row['Logged'])) {
-                $total = $row['Logged'];
+            if (empty($row['Key'])) {
                 continue;
             }
 
-            $key = $row['Key'] ?? '';
-            $desc = $row['Worklog'] ?? '';
-
-            if (empty($tasks[$key]['descriptions'])) {
-                $tasks[$key]['descriptions'] = [];
-            }
-
-            foreach ($tasks[$key]['descriptions'] as $description) {
-                if ($description === $desc) {
-                    continue 2; // skip if the description already exists
-                }
-            }
-
-            $tasks[$key]['descriptions'][] = $desc;
+            $task = new TempoTask($row['Key']);
+            $task->addWorklog($row['Worklog']);
+            $report->addTask($task);
         }
 
-        //parse the tasks array to create content for the Word document
-        foreach ($tasks as $key => $task) {
-            $content .= $key . PHP_EOL;
-            foreach ($task['descriptions'] as $object) {
-                $content .= "- " . $object . PHP_EOL;
-            }
-        }
-
-        return [
-            'content' => $content,
-            'total' => $total
-        ];
+        return $report->toString();
     }
 }
