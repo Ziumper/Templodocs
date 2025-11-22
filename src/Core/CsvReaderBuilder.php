@@ -24,6 +24,9 @@ class CsvReaderBuilder
         return $this;
     }
 
+    /**
+    * @return Reader<array<string, string>>|null
+    */
     public function build(): ?Reader
     {
         if (empty($this->path) && empty($this->string)) {

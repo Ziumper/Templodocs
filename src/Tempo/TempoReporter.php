@@ -18,6 +18,9 @@ use League\Csv\Statement;
  */
 class TempoReporter
 {
+    /**
+     * @param Reader<array<string, string>> $reader
+     */
     public function __construct(private Reader $reader)
     {
     }

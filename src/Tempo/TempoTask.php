@@ -6,6 +6,9 @@ namespace Ziumper\Templodocs\Tempo;
 
 class TempoTask
 {
+    /**
+     * @var array<string|null>
+     */
     private array $worklogs = [];
 
     public function __construct(private string $key)
@@ -17,7 +20,7 @@ class TempoTask
         return $this->key;
     }
 
-    public function addWorklog(?string $worklog)
+    public function addWorklog(?string $worklog): void
     {
         if (empty($worklog)) {
             return;

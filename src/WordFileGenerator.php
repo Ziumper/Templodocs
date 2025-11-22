@@ -8,6 +8,9 @@ class WordFileGenerator
 {
     private string $format = '.docx';
 
+    /**
+     * @param array<string,string> $values
+     */
     public function __construct(
         private string $templateFile,
         private string $outputFile,
@@ -26,7 +29,7 @@ class WordFileGenerator
         $template->saveAs($this->getFilename());
     }
 
-    public function getFilename()
+    public function getFilename(): string
     {
         return $this->outputFile . $this->format;
     }

@@ -20,11 +20,15 @@
         "bin/templodocs"
     ],
     "scripts": {
-        "phpunit": "vendor/bin/phpunit -c phpunit.xml.dist --display-warnings --display-deprecations --display-phpunit-deprecations",
+        "test": "vendor/bin/phpunit -c phpunit.xml.dist --display-warnings --display-deprecations --display-phpunit-deprecations",
         "phpstan": "vendor/bin/phpstan analyze src/ tests/",
         "phpcs": "vendor/bin/phpcs src tests",  
-        "phpcbf": "vendor/bin/phpcbf src tests"
+        "fix": "vendor/bin/phpcbf src tests"
     },
+	"scripts-descriptions": {
+		"test" : "Run all tests",
+		"fix" : "Run phpcbf fix for phpcs errors"
+	},
     "require": {
 	"php": ">=8.3",
         "phpoffice/phpword": "^1.3",

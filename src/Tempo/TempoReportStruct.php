@@ -6,6 +6,7 @@ namespace Ziumper\Templodocs\Tempo;
 
 class TempoReportStruct
 {
+    /** @var TempoTask[] */
     private array $tasks = [];
 
     public function toString(): string
@@ -19,7 +20,7 @@ class TempoReportStruct
         return $content;
     }
 
-    public function addTask(TempoTask $task)
+    public function addTask(TempoTask $task): void
     {
         $current = $this->getTask($task->getKey());
 

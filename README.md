@@ -17,3 +17,4 @@ bin/templodocs ./templates/data.csv ./templates/template.docx new_report.docx
 * Add `phpcs` and `phpstan` [x]
 * Add php unit tests [x]
 * Add translation api
+

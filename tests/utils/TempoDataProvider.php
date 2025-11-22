@@ -6,6 +6,7 @@ namespace Ziumper\Templodocs\Tests\Utils;
 
 final class TempoDataProvider
 {
+    /** @return array<string,array<string>> */
     public static function reportDataProvider(): array
     {
         return [
