@@ -2,7 +2,7 @@
 <?php
 
 use Ziumper\Templodocs\Core\CsvReaderBuilder;
-use Ziumper\Templodocs\Tempo\TempoReporter;
+use Ziumper\Templodocs\Tempo\TempoReport;
 use Ziumper\Templodocs\WordFileGenerator;
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -12,10 +12,13 @@ require __DIR__ . '/../vendor/autoload.php';
 $csv = $argv[1] ?? 'templates/data.csv';           // Default if not passed
 $template = $argv[2] ?? 'templates/template.docx'; // Default if not passed
 $reportFile = $argv[3] ?? 'report';                // Default if not passed
+$translationFrom = $argv[4] ?? null;
+$translationTo = $argv[5] ?? null;
+$jiraLink = $argv[6] ?? null;
 
-
-$tempoReader = new TempoReporter();
 $reader = (new CsvReaderBuilder())->withPath($csv)->build();
-$generator = new WordFileGenerator($template,$reportFile, $tempoReader->getContent($reader));
+$report = new TempoReport($reader);
+
+$generator = new WordFileGenerator($template,$reportFile, $report->getContent());
 $generator->generate();
 

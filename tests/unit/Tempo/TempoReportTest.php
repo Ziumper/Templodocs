@@ -7,19 +7,19 @@ namespace Ziumper\Templodocs\Tests\Unit\Tempo;
 use PHPUnit\Framework\Attributes\{DataProviderExternal,CoversClass};
 use PHPUnit\Framework\TestCase;
 use Ziumper\Templodocs\Core\CsvReaderBuilder;
-use Ziumper\Templodocs\Tempo\TempoReporter;
+use Ziumper\Templodocs\Tempo\TempoReport;
 use Ziumper\Templodocs\Tests\Utils\TempoDataProvider;
 
-#[CoversClass(TempoReporter::class)]
-final class TempoReporterTest extends TestCase
+#[CoversClass(TempoReport::class)]
+final class TempoReportTest extends TestCase
 {
     #[DataProviderExternal(TempoDataProvider::class, 'reportDataProvider')]
-    public function testGetReport(string $csvContnet, string $expected): void
+    public function testGetTempoReportContent(string $csvContnet, string $expected): void
     {
         $reader = (new CsvReaderBuilder())->withString($csvContnet)->build();
-        $reporter = new TempoReporter($reader);
+        $reporter = new TempoReport($reader);
 
-        $content = $reporter->getReport();
+        $content = $reporter->getContent();
         static::assertEquals($expected, $content);
     }
 }

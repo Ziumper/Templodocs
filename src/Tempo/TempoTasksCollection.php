@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ziumper\Templodocs\Tempo;
 
-class TempoReportStruct
+class TempoTasksCollection
 {
     /** @var TempoTask[] */
     private array $tasks = [];
