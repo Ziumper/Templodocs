@@ -20,14 +20,14 @@
         "bin/templodocs"
     ],
     "scripts": {
-        "test": "vendor/bin/phpunit -c phpunit.xml.dist --display-warnings --display-deprecations --display-phpunit-deprecations",
-        "phpstan": "vendor/bin/phpstan analyze src/ tests/",
-        "phpcs": "vendor/bin/phpcs src tests",  
-        "fix": "vendor/bin/phpcbf src tests"
+        "tests": "vendor/bin/phpunit -c phpunit.xml.dist --display-warnings --display-deprecations --display-phpunit-deprecations",
+        "qa": "vendor/bin/phpstan analyze src/ tests/ & vendor/bin/phpcs src tests",
+        "qa-fix": "vendor/bin/phpcbf src tests"
     },
 	"scripts-descriptions": {
-		"test" : "Run all tests",
-		"fix" : "Run phpcbf fix for phpcs errors"
+		"tests" : "Run all tests",
+		"qa-fix" : "Run phpcbf fix for phpcs errors",
+        "qa": "Run phpstan and phpcs"
 	},
     "require": {
 	"php": ">=8.3",

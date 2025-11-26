@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-    //tak się zastanawiam czy teraz to dobrze odczyta
 namespace Ziumper\Templodocs\Tempo;
 
 use League\Csv\Reader;
@@ -10,6 +9,8 @@ use League\Csv\Statement;
 use League\Csv\TabularData;
 use League\Csv\TabularDataReader;
 use Ziumper\Templodocs\Report\Parser;
+
+use function assert;
 
 /**
  * @author Ziumper
@@ -40,7 +41,8 @@ class TempoReport
 
             /** @var Parser $parser */
             foreach ($this->parsers as $parser) {
-                $parser->parse($row);
+                $parserResult = $parser->parse($row);
+                $row = $parserResult->result;
             }
 
             $task = new TempoTask($row['Key']);

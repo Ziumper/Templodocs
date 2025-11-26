@@ -8,23 +8,27 @@ use League\Csv\TabularData;
 use Override;
 use Ziumper\Templodocs\Core\TranslatorService;
 use Ziumper\Templodocs\Report\Parser;
+use Ziumper\Templodocs\Report\ParserResult;
 
 use function assert;
 
-class TempoTranslatorParser implements Parser
+readonly class TempoTranslatorParser implements Parser
 {
     public function __construct(
-        private readonly TranslatorService $translator,
+        private TranslatorService $translator,
         private string $from,
         private string $to
     ) {
     }
 
     #[Override]
-    public function parse(object $reportRow): void
+    public function parse(mixed $reportRow): ParserResult
     {
         assert($reportRow instanceof TabularData);
-        $content = $reportRow["row"];
-        $reportRow["row"] = $this->translator->translate($content, $this->from, $this->to);
+        $content = $reportRow["Worklog"];
+        $reportRow["Worklog"] = $this->translator->translate($content, $this->from, $this->to);
+        $result = new ParserResult();
+        $result->result = $reportRow;
+        return $result;
     }
 }

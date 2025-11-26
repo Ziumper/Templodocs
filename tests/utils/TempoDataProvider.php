@@ -11,10 +11,20 @@ final class TempoDataProvider
     {
         return [
             "single day reported" => [
-                ",Issue,Worklog,Key,Logged,01/Oct/92\n" .
-                ",Test job,Here goes my work,KEYLOG-999,2",
+                ",Issue,Worklog,Key,Logged,01/Oct/92\n,Test job,Here goes my work,KEYLOG-999,2",
                 "KEYLOG-999\n- Here goes my work\n",
-            ]
+            ],
+        ];
+    }
+
+    /** @return array<string,array<string>> */
+    public static function translatedDataProvider(): array
+    {
+        return [
+            "translated day reported" => [
+                ",Issue,Worklog,Key,Logged,01/Oct/92\n,Test job,Here goes my work,KEYLOG-999,2",
+                "KEYLOG-999\n- Oto moja praca\n",
+            ],
         ];
     }
 }
