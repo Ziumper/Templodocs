@@ -23,6 +23,8 @@ class TempoJiraParser implements Parser
     {
         assert($reportRow instanceof TabularData);
         $reportRow["Key"] .= "\n" . $this->jiraUrl;
-        return new ParserResult();
+        $parserResult = new ParserResult();
+        $parserResult->result = $reportRow;
+        return $parserResult;
     }
 }
