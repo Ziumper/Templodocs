@@ -2,7 +2,10 @@
 <?php
 
 use Ziumper\Templodocs\Core\CsvReaderBuilder;
+use Ziumper\Templodocs\Core\TranslatorService;
+use Ziumper\Templodocs\Tempo\TempoJiraParser;
 use Ziumper\Templodocs\Tempo\TempoReport;
+use Ziumper\Templodocs\Tempo\TempoTranslatorParser;
 use Ziumper\Templodocs\WordFileGenerator;
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -16,8 +19,20 @@ $translationFrom = $argv[4] ?? null;
 $translationTo = $argv[5] ?? null;
 $jiraLink = $argv[6] ?? null;
 
+
+$parsers = [];
+
+if ($translationFrom & $translationTo) {
+    $parsers[] = new TempoTranslatorParser(new TranslatorService(), $from, $to);
+}
+
+if ($jiraLink) {
+    $parsers[] = new TempoJiraParser($jiraLink);
+}
+
+
 $reader = (new CsvReaderBuilder())->withPath($csv)->build();
-$report = new TempoReport($reader);
+$report = new TempoReport($reader, $parsers);
 
 $generator = new WordFileGenerator($template,$reportFile, $report->getContent());
 $generator->generate();

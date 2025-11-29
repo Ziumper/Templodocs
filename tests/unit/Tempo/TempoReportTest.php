@@ -9,6 +9,7 @@ use PHPUnit\Framework\Attributes\DataProviderExternal;
 use PHPUnit\Framework\TestCase;
 use Ziumper\Templodocs\Core\CsvReaderBuilder;
 use Ziumper\Templodocs\Core\TranslatorService;
+use Ziumper\Templodocs\Tempo\TempoJiraParser;
 use Ziumper\Templodocs\Tempo\TempoReport;
 use Ziumper\Templodocs\Tempo\TempoTranslatorParser;
 use Ziumper\Templodocs\Tests\Utils\TempoDataProvider;
@@ -35,6 +36,20 @@ final class TempoReportTest extends TestCase
             [
                     new TempoTranslatorParser(new TranslatorService(), from: "en", to: "pl")
                 ]
+        );
+
+        static::assertEquals($expected, $reporter->getContent());
+    }
+
+    #[DataProviderExternal(TempoDataProvider::class, "jiraKeyDataProvider")]
+    public function testJiraKeyReportContent(string $csvContent, string $expected): void
+    {
+        $reader = (new CsvReaderBuilder())->withString($csvContent)->build();
+        $reporter = new TempoReport(
+            $reader,
+            [
+                new TempoJiraParser(jiraUrl: "https://test-net.atlassian.net")
+            ]
         );
 
         static::assertEquals($expected, $reporter->getContent());

@@ -27,4 +27,15 @@ final class TempoDataProvider
             ],
         ];
     }
+
+    /** @return array<string,array<string>> */
+    public static function jiraKeyDataProvider(): array
+    {
+        return [
+            "test jira key" => [
+                ",Issue,Worklog,Key,Logged,01/Oct/92\n,Test job,Here goes my work,KEYLOG-999,2",
+                "KEYLOG-999\nhttps://test-net.atlassian.net/KEYLOG-999\n- Here goes my work\n",
+            ],
+        ];
+    }
 }
