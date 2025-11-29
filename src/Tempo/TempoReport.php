@@ -10,8 +10,6 @@ use League\Csv\TabularData;
 use League\Csv\TabularDataReader;
 use Ziumper\Templodocs\Report\Parser;
 
-use function assert;
-
 /**
  * @author Ziumper
  */
@@ -45,7 +43,11 @@ class TempoReport
                 $row = $parserResult->result;
             }
 
-            $task = new TempoTask($row['Key']);
+            $task = $tasks->getTask($row['Key']);
+            if ($task === null) {
+                $task = new TempoTask($row['Key']);
+            }
+
             $task->addWorklog($row['Worklog']);
             $tasks->addTask($task);
         }

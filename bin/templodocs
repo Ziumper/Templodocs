@@ -23,7 +23,7 @@ $jiraLink = $argv[6] ?? null;
 $parsers = [];
 
 if ($translationFrom & $translationTo) {
-    $parsers[] = new TempoTranslatorParser(new TranslatorService(), $from, $to);
+    $parsers[] = new TempoTranslatorParser(new TranslatorService(), $translationFrom, $translationTo);
 }
 
 if ($jiraLink) {
@@ -34,6 +34,6 @@ if ($jiraLink) {
 $reader = (new CsvReaderBuilder())->withPath($csv)->build();
 $report = new TempoReport($reader, $parsers);
 
-$generator = new WordFileGenerator($template,$reportFile, $report->getContent());
+$generator = new WordFileGenerator($template, $reportFile, ["content" => $report->getContent()]);
 $generator->generate();
 

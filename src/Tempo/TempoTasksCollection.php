@@ -20,6 +20,11 @@ class TempoTasksCollection
         return $content;
     }
 
+    public function size(): int
+    {
+        return count($this->tasks);
+    }
+
     public function addTask(TempoTask $task): void
     {
         $current = $this->getTask($task->getKey());
@@ -33,12 +38,14 @@ class TempoTasksCollection
 
     public function getTask(string $key): ?TempoTask
     {
-        $task = array_filter($this->tasks, static fn($t) => $t->getKey() === $key);
-
-        if (empty($task)) {
-            return null;
+        /** @var TempoTask $task */
+        foreach ($this->tasks as $task) {
+            $taskKey = $task->getKey();
+            if ($taskKey === $key) {
+                return $task;
+            }
         }
 
-        return $task[0];
+        return null;
     }
 }
