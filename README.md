@@ -8,6 +8,10 @@ A sacred tool for documents templates. So far you can use it to:
 Generate a Word document from a template. To generate the word document run following 
 command.
 
+Template file should have following keyword inside document: `${content}`.
+It will be replaced on file generation with valid data templodocs tool.
+
+
 ```bash
 bin/templodocs ./templates/data.csv ./templates/template.docx new_report en pl https://test-net.atlassian.net
 ```
