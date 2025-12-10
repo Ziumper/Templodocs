@@ -10,7 +10,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-             "Ziumper\\Templodocs\\Tests\\Utils\\": "tests/utils",
+            "Ziumper\\Templodocs\\Tests\\Utils\\": "tests/utils",
             "Ziumper\\Templodocs\\Tests\\Unit\\": "tests/unit",
             "Ziumper\\Templodocs\\Tests\\Integration\\": "tests/integration"
         }
